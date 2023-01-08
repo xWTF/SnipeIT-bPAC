@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32804.467
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SnipeIT-bPAC", "SnipeIT-bPAC\SnipeIT-bPAC.csproj", "{4FC36674-2D6F-4DDD-AB2E-5DA6A1B13B26}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4FC36674-2D6F-4DDD-AB2E-5DA6A1B13B26}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{4FC36674-2D6F-4DDD-AB2E-5DA6A1B13B26}.Debug|x86.ActiveCfg = Debug|x86
+		{4FC36674-2D6F-4DDD-AB2E-5DA6A1B13B26}.Debug|x86.Build.0 = Debug|x86
+		{4FC36674-2D6F-4DDD-AB2E-5DA6A1B13B26}.Release|Any CPU.ActiveCfg = Release|x64
+		{4FC36674-2D6F-4DDD-AB2E-5DA6A1B13B26}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {84AD9696-89C8-4A3B-AFBD-30C6889879DB}
+	EndGlobalSection
+EndGlobal
