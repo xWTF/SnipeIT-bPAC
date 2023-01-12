@@ -9,7 +9,6 @@ namespace SnipeIT_bPAC
     public partial class ServerForm : Form
     {
         public HttpListener? Listener;
-        public DocumentClass Document = new DocumentClass();
 
         private bool StartMinimized = false;
 
@@ -127,6 +126,30 @@ namespace SnipeIT_bPAC
             UseShellExecute = true,
         });
 
+        private void DoPrint(Dictionary<string, object>[] requests)
+        {
+            var document = new DocumentClass();
+            if (!document.Open(textBox_template.Text))
+            {
+                throw new Exception("Print error: Unable to open template");
+            }
+            document.StartPrint(requests.Length + " Labels", PrintOptionConstants.bpoDefault);
+            foreach (var r in requests)
+            {
+                foreach (var kv in r)
+                {
+                    var obj = document.GetObject(kv.Key);
+                    if (obj != null)
+                    {
+                        obj.Text = kv.Value.ToString();
+                    }
+                }
+                document.PrintOut(1, PrintOptionConstants.bpoDefault);
+            }
+            document.EndPrint();
+            document.Close();
+        }
+
         private void SaveSettings(object? sender = null, EventArgs? e = null) => Properties.Settings.Default.Save();
 
         private void HandleRequest(HttpListenerContext ctx)
@@ -167,35 +190,15 @@ namespace SnipeIT_bPAC
 
             try
             {
-                if (!Document.Open(Invoke(() => textBox_template.Text)))
-                {
-                    Log("Print error: Unable to open template");
-                    ctx.SendJson(new { code = 500, msg = "Unable to open template" });
-                    return;
-                }
-
-                Document.StartPrint(requests.Length + " Labels", PrintOptionConstants.bpoDefault);
-                foreach (var r in requests)
-                {
-                    foreach (var kv in r)
-                    {
-                        var obj = Document.GetObject(kv.Key);
-                        if (obj != null)
-                        {
-                            obj.Text = kv.Value.ToString();
-                        }
-                    }
-                    Document.PrintOut(1, PrintOptionConstants.bpoDefault);
-                }
-                Document.EndPrint();
-                Document.Close();
+                // Call the bPAC in STAThread
+                Invoke(() => DoPrint(requests));
 
                 Log("Printed " + requests.Length + " labels from " + req.RemoteEndPoint.ToString());
             }
             catch (Exception ex)
             {
                 Log("Print error: " + ex);
-                ctx.SendJson(new { code = 500, msg = "Unknown error occured" });
+                ctx.SendJson(new { code = 500, msg = "Unknown error occured: " + ex.Message });
                 return;
             }
             ctx.SendJson(new { code = 200 });
