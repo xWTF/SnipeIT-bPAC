@@ -133,7 +133,7 @@ namespace SnipeIT_bPAC
             {
                 throw new Exception("Print error: Unable to open template");
             }
-            document.StartPrint(requests.Length + " Labels", PrintOptionConstants.bpoDefault);
+            document.StartPrint("", PrintOptionConstants.bpoDefault);
             foreach (var r in requests)
             {
                 foreach (var kv in r)
