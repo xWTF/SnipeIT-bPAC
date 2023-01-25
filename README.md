@@ -7,7 +7,8 @@
 
 1. Create a template with P-touch Editor following [The Official Guide](https://support.brother.com/g/s/es/dev/en/bpac/use/editor/index.html), set the `Object Name` column to one of the [Keys Available](#Keys-Available), they will be replaced automatically :)
 1. Save the template file to a sensible location
-1. Install the [bPAC Client Component](https://support.brother.com/g/s/es/dev/en/bpac/download/index.html#client) on the server that runs this daemon
+1. Install the [bPAC Client Component](https://support.brother.com/g/s/es/dev/en/bpac/download/index.html#client) on the server that runs this daemon  
+   __Note: If you are downloading from releases, get the 64 bit version!__
 1. Grab the daemon from [releases](https://github.com/xWTF/SnipeIT-bPAC/releases) or build your own from the source
 1. Open the daemon, click **Stop** button and configure a sensible port and access key, and the template file
 1. Click **Start** button
@@ -17,11 +18,27 @@
 
 ## Start with Windows
 
-Create a shortcut in `shell:startup` folder.
+Create a shortcut in `shell:startup` folder, and it should work.
 
-## Start minimized
+To start miminized, pass `-m` to the argument list.
 
-Just pass `-m` to the argument list.
+## Random freezes on request?
+
+If you're facing random freezes after printing for a few times and idle for a long period, while continuous printing works fine, it might be a bPAC issue.
+
+The **bPAC SDK 3.4 Manual**, **Troubleshooting** sections writes:
+
+> ### It is taking a long time to run Open()
+> With Open(), printer enumeration is performed internally.  
+> If a printer with slow response is connected, for example, a printer on the network that is turned off, Open () can take a long time.
+
+Possible solutions:
+
+- Connect your printer via USB instead of WLAN
+- Kill the program when it stuck, and reopen it & re-submit the print request  
+  This is 100% working & fast, the first print request after freeze ALWAYS works
+- Wait patiently, in my worst case it takes 3 minutes to execute the `Open()` method
+- Try to mess with the config tool and make the printer not sleep
 
 ## The Snipe-IT part
 
