@@ -8,7 +8,7 @@
 1. Create a template with P-touch Editor following [The Official Guide](https://support.brother.com/g/s/es/dev/en/bpac/use/editor/index.html), set the `Object Name` column to one of the [Keys Available](#Keys-Available), they will be replaced automatically :)
 1. Save the template file to a sensible location
 1. Install the [bPAC Client Component](https://support.brother.com/g/s/es/dev/en/bpac/download/index.html#client) on the server that runs this daemon  
-   __Note: If you are downloading from releases, get the 64 bit version!__
+   __Note: If you are downloading from releases, get the 64 bit version! (also check [this](#error-retrieving-the-com-class-factory-for-component-with-clsid-failed) out)__
 1. Grab the daemon from [releases](https://github.com/xWTF/SnipeIT-bPAC/releases) or build your own from the source
 1. Open the daemon, click **Stop** button and configure a sensible port and access key, and the template file
 1. Click **Start** button
@@ -39,6 +39,14 @@ Possible solutions:
   This is 100% working & fast, the first print request after freeze ALWAYS works
 - Wait patiently, in my worst case it takes 3 minutes to execute the `Open()` method
 - Try to mess with the config tool and make the printer not sleep
+
+## Error: Retrieving the COM class factory for component with CLSID failed?
+
+This error message means that the daemon is unable to find **bPAC Client Component** installation.
+
+The binaries I provided in Releases SHOULD run under 64-bit mode since I've specified PlatformTarget. And you are supposed to install 64-bit **bPAC Client Component**.
+
+However, if the bit width indicator on the left bottom of main form shows "32-bit", please install 32-bit **bPAC Client Component**, and report your case in this issue: https://github.com/xWTF/SnipeIT-bPAC/issues/1, thank you.
 
 ## The Snipe-IT part
 
