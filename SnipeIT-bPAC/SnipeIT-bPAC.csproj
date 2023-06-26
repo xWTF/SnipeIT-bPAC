@@ -11,7 +11,7 @@
     <Authors>xWTF</Authors>
     <Description>Convenient bPAC print daemon for Snipe-IT asset management software</Description>
     <Copyright>Copyright (c) 2023 xWTF</Copyright>
-	<Version>1.0.1</Version>
+	<Version>1.0.2</Version>
 	<PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 

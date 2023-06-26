@@ -21,6 +21,9 @@ namespace SnipeIT_bPAC
 
             InitializeComponent();
 
+            label_mode.Text = Environment.Is64BitProcess ? "64-bit" : "32-bit";
+            label_mode.ForeColor = Environment.Is64BitProcess ? Color.DarkGreen : Color.DarkOrange;
+
             notifyIcon1.Icon = Icon;
             textBox_log.BackColor = Color.White;
 
